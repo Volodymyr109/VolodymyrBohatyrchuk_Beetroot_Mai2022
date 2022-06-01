@@ -1,0 +1,27 @@
+#TASK_1 lets guess a num
+import random
+trying_user = 0
+number = random.randint(1, 10)
+print('Get num from 1 to 10: ')
+while trying_user < 10:
+    num_from_user = int(input('Get num: '))
+    trying_user += 1
+    if num_from_user < number:
+        print('Yours is lower.')
+    if num_from_user > number:
+        print('Yours is higher.')
+    if num_from_user == number:
+        break
+if num_from_user == number:
+    print('winner')
+else:
+    print('loser'
+
+#TASK_2 happy B-day + 1
+name_user = str(input('Your name: '))
+age_user = int(input('Your age: '))
+old = age_user + 1
+print(str(name_user) + ', Happy B-day, in next year you will be ' + str(old))
+
+#TASK_3 random words
+# не до кінця розібрався, зроблю після лекції!)
