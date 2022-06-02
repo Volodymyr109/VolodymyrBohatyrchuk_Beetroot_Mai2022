@@ -25,3 +25,9 @@ print(str(name_user) + ', Happy B-day, in next year you will be ' + str(old))
 
 #TASK_3 random words
 # не до кінця розібрався, зроблю після лекції!)
+#TASK_3 random words
+    import random
+
+    word = list(str('hello'))
+    random.shuffle(word)
+    print(word)
