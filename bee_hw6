@@ -1,0 +1,25 @@
+#MAX NUMBER AUS LISTE
+"""тобто while порівнює кожне число з попереднім видаваючи більше (задача як на уроці впринципі)"""
+my_list = [1, 2, 3, 55, 65, 12, 13, 565, 1234, 232]
+max_number = 0
+while my_list:
+    if max_number < my_list[0]:
+        max_number = my_list[0]
+    my_list.pop(0)
+    print(f'the largest is {max_number}')
+else:
+    print('hehe')
+
+#TASK2 how to create 3 random list with a int 1
+import random
+res1 = [random.randrange(1, 10) for i in range(10)]
+res2 = [random.randrange(1, 10) for i in range(10)]
+res3 = [random.randrange(1, 10) for i in range(10)]
+print("Random number list is : " + str(res1))
+print("Random number list is : " + str(res2))
+print("Random number list is : " + str(res3))
+
+#TASK_3 witnno while lol?
+list_1 = list(range(1, 101))
+result = list(filter(lambda x: (x % 7 == 0 and x % 5 != 0), list_1))
+print("Numbers divisible by 7 are",result)
