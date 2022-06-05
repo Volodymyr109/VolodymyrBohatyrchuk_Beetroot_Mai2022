@@ -1,0 +1,35 @@
+    points for gut gemacht
+import  random
+points = 0
+while True:
+    x = random.randint(0,10)
+    y = random.randint(0,10)
+    print('points: ' + str(points))
+    answer = input(str(x) + '+' + str(y) + '=? (type q to quit): ')
+    if answer == 'q':
+        break
+    elif int(answer) != x+y:
+        print('no points')
+        continue
+    print('gut gemacht')
+    points += 1
+    
+    
+      lets guess a num
+import random
+trying_user = 0
+number = random.randint(1, 10)
+print('Get num from 1 to 10: ')
+while trying_user < 10:
+    num_from_user = int(input('Get num: '))
+    trying_user += 1
+    if num_from_user < number:
+        print('Yours is lower.')
+    if num_from_user > number:
+        print('Yours is higher.')
+    if num_from_user == number:
+        break
+if num_from_user == number:
+    print('winner')
+else:
+    print('loser')
