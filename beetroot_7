@@ -1,0 +1,36 @@
+#TASK_1 Make a program that has some sentence (a string) on input and returns a dict containing all unique words as keys and the number of occurrences as values.
+#тобто просто створити словник і вивести всі його дані?
+country = {'name': 'Ukraine', 'capital': 'kyiv', 'largest_cities': ['Kyiv', 'Lviv', 'Dnipro'], 'language': 'ukrainian'}
+country.update({'population': 35000000})   #for expl, new item from list update
+print('Name:', country['name'])
+print('The capital is:', country['capital'])
+print('The largest cities are: ', country['largest_cities'])
+print('Language is:', country['language'])
+print('population is:', country['population'])
+
+
+#TASK_2
+stock = {
+    "banana": 6,
+    "apple": 0,
+    "orange": 32,
+    "pear": 15
+}
+prices = {
+    "banana": 4,
+    "apple": 2,
+    "orange": 1.5,
+    "pear": 3
+}
+i = 0
+for fruit in stock.keys():
+    i += stock[fruit]*prices[fruit]
+print('sum of all items from a stock: ', i)
+
+#TASK_3
+list_n = range(11)
+new_list = []
+for n in list_n:
+    if n%1==0:
+        new_list.append(n**2)
+print(new_list)
