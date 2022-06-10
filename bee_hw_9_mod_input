@@ -1,0 +1,37 @@
+#TASK_1
+#first file name is "module111"
+#first file
+
+def country(name, capital, population):
+    print('Name of a country is: ' + name + ', the capital is: ' + capital + ', actualy population is: ' + population + ' people ')
+
+country('Ukraine', 'Kyiv', '35000000')
+
+
+#in another file to import from a file "module111":
+#second file
+
+from module111 import country
+print(locals(country))
+
+#or: 
+#but i nom understend, ist this need two prints writing or from module111 import country  and  print(locals()) is OK or print(module111.country)
+
+
+from module111 import country
+print(locals())
+print(country)
+
+
+
+
+#TASK_3
+
+
+
+
+
+
+
+
+
