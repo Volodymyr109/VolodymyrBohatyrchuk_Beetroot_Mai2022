@@ -26,10 +26,30 @@ print(country)
 
 
 #TASK_3
+#import
+from io import TextIOWrapper
+
+def count_lines(file: TextIOWrapper) -> int:
+    file.seek(0)
+    return len(file.readlines())
+
+def count_chars(file: TextIOWrapper) -> int:
+    file.seek(0)
+    return len(file.read())
 
 
+def test(name):
+    count_lines = count_lines(file)
+    count_chars = count_chars(file)
+    print(f'There were {count_lines} lines and {count_chars} chars in the file {name}')
+#def test(name: str) -> None:
+#   count_lines(file)
+#  count_chars(file)
+# print(count_lines(file), count_chars(file), name)
 
-
+#test('mymod.py')
+#file = open('lol.py', 'r')
+#print(len(file.read()))
 
 
 
