@@ -1,0 +1,43 @@
+#TASK_1 не зрозумів що мається на увазі під Then write another function that calls oops inside a try/except state­ment to catch the error.
+# тобто це написати функцію після except IndexError as err але в будь якому випадку результат однаковий і без def handle_error(oops): - list index out of range
+
+words = ['name: ', 'age: ', 'university: ']
+
+def oops(words):
+    return words
+try:
+    print(words[4])
+except IndexError as err:
+    pass
+#помістив функцію з другої частини завдання після except IndexError as err:.
+def handle_error(oops):
+    oops(words)
+try:
+    print(words[4])
+except IndexError as err:
+    print(err)
+    print('List for 3 words, you try to call 4...')
+
+#TASK_2
+def square_value_divide(a,b):
+    #a, b = input('Add two numbers: ').split()
+    #square_value_divide(a, b)
+    result = int(a) ** int(b)
+    print(result)
+
+    try:
+        #a, b = input('Add two numbers: ').split()
+        #square_value_divide(a, b)
+        #result = int(a) ** int(b)
+        print(result)
+
+    except ValueError as err:
+        print(err)
+        print('no symbols, I need numbers')
+    except ZeroDivisionError as err:
+        print(err)
+        print('No zeros')
+    else:
+        print('Good result')
+a, b = input('Add two numbers: ').split()
+square_value_divide(a, b)
