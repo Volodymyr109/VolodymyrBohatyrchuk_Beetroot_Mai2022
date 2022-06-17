@@ -143,19 +143,18 @@ def update_record():
 
     pass
 
-def delete_record_number(delete_record):
-    pass
-
 def delete_record():
-    delete_record = input(f'Delete a phone number: ').upper()
-    while delete_record == 'phone':
-        del (DELETE_OPTIONS)
-    print('Phone is deleted ')
-
-
+    phone_number = input('Enter phone number that have to be deleted: ')
+    contact = get_contact_by_phone_number
+    if contact:
+        delete_options = contact
+        if delete_options == 1:
+            del contact
+        print('Phone is deleted ')
 
 
 def search_contact_by_criteria(search_value):
+    passrch_contact_by_criteria(search_value):
     pass
 
 def search():
