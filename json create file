@@ -1,6 +1,249 @@
+#TASK_1
+
 f = open("myfile.txt", "w")
 f.write("Hello file World!")
 f.close()
 
 f = open("myfile.txt", "r")
 print(f.read())
+
+
+#TASK_2
+
+"""
+Functionality of Phonebook application:
+
+Add new entries
+Search by first name
+Search by last name
+Search by full name
+Search by telephone number
+Search by city or state
+Delete a record for a given telephone number
+Update a record for a given telephone number
+An option to exit the program
+
+
+The first argument to the application should be the name of the phonebook.
+Application should load JSON data, if it is present in the folder with application, else raise an error.
+After the user exits, all data should be saved to loaded JSON.
+Key points:
+* all program logic should be split to different functions;
+* store all entries in the dict, where key is the full name (tuple with length 2 - first name, last name)
+and value another tuple with (all other data);
+
+During the lesson, just a few methods should be covered, others should be moved to Homework
+"""
+import json
+
+"""
+Main logic:
+1 - Add new record
+2 - Search
+3 - Update record
+4 - Delete record
+5 - Exit
+"""
+PHONE_INDEX = 0
+CITY_INDEX = 1
+NOTES_INDEX = 2
+FIRSTNAME_INDEX = 0
+LASTNAME_INDEX = 1
+
+UPDATE_OPTIONS ="""
+Enter the value fot field you want to update:
+1. First name
+2. Last name
+3. Phone
+4. City
+5. Notes
+
+Your Choice: 
+"""
+
+SEARCH_OPTIONS = """
+Select search criteria: 
+1. Search by first name
+2. Search by last name
+3. Search by full name
+4. Search by telephone number
+5. Search by city or state
+6. Search by notes
+Your choice: 
+"""
+
+DELETE_OPTIONS = """
+1. Phone
+"""
+
+def add_entry():
+    full_name = input('Input full name: ')
+    phone = input('Enter phone number: ')
+    city = input("Enter city: ")
+    notes = input('Enter notes: ')
+    entry = {
+        full_name: {
+            "phone": phone,
+            "city": city,
+            "notes": notes
+        }
+    }
+    with open('phonebook.json', 'r+') as phonebook:
+        # read the whole file convert to dict
+        json_data = json.load(phonebook)
+        # update dict
+        json_data.update(entry)
+        # move cursor to beginning
+        phonebook.seek(0)
+        # record data to file
+        json.dump(json_data, phonebook)
+
+    print('Record added to the phonebook')
+
+def get_contact_by_phone_number(phone_number):
+    phone_number = input('Enter phone number that schUld be updated: ')
+    with open('phonebook.json', 'r+') as phonebook:
+        json_data = json.load(phonebook)
+        for key, value in json_data.items():
+            if phone_number == value(PHONE_INDEX):
+                return key
+        print(f'Contact with Phone number {phone_number} not found ')
+        return None
+
+def update_contact_other_data(contact, new_value, index, other_data=True):
+    with open('phonebook.json', 'r+') as phonebook:
+        json_data = json.load(phonebook)
+        json_data[contact][index] = new_value
+        json_data[contact][index] = new_value
+        phonebook.seek(0)
+        json.dump(json_data, phonebook)
+
+
+
+def update_record():
+    phone_number = input('Enter phone number that schuld be updated: ')
+    contact = get_contact_by_phone_number
+    if contact:
+        update_options = int(input(UPDATE_OPTIONS))
+        if update_options == 1:
+            pass
+        elif update_options == 2:
+            firstname, lastname = contact.split()
+            new_lastname= input('Enter new lastname number for this contact: ')
+            update_contact_other_data(contact, new_lastname, PHONE_INDEX)
+            with open('phonebook.json', 'r+') as phonebook:
+                json_data = json.load(phonebook)
+                json_data[''.join([firstname, new_lastname])] = json.data.pop
+                phonebook.seek(0)
+                json.dump(json_data, phonebook)
+            print(f'Lastname for contact {contact} successfully updated')
+
+            ####print(f'Lastname number for contact {contact} successfully updated')
+        elif update_options == 3:
+            new_phone = input('Enter new phone number for this contact: ')
+            update_contact_other_data(contact, new_phone, PHONE_INDEX)
+            print(f'Phone number for contact {contact} successfully updated')
+        elif update_options == 4:
+            new_city = input('Enter new city for this contact:  ')
+            update_contact_other_data(contact, new_city, CITY_INDEX)
+            print(f'City number for contact {contact} successfully updated')
+        elif update_options == 5:
+            # TODO add logic for updating notes
+            pass
+    #    if not phone_number.isdigit():
+#        raise err
+
+    pass
+
+def delete_record():
+    phone_number = input('Enter phone number that have to be deleted: ')
+    contact = get_contact_by_phone_number
+    if contact:
+        delete_options = contact
+        if delete_options == 1:
+            del contact
+        print('Phone is deleted ')
+
+
+def search_contact_by_criteria(search_value):
+    passrch_contact_by_criteria(search_value):
+    pass
+
+def search():
+    search_value = None
+    search_criteria = int(input(SEARCH_OPTIONS))
+    with open('phonebook.json', 'r+') as phonebook:
+        json_data = json.load(phonebook)
+
+    if search_criteria == 1:
+        search_value = input('Enter Firstname to search: ')
+        if not any(key.startswith(search_value) for key in json_data.keys()):
+            print('Nothing found')
+        else:
+            for key, value in json_data.items():
+                if key.startswith(search_value):
+                    print('Contact found', {key: value})
+    elif search_criteria == 2:
+        search_value = input('Enter Lastname to search: ')
+        if not any(key.endswith(search_value) for key in json_data.keys()):
+            print('Nothing found')
+        else:
+            for key, value in json_data.items():
+                if key.endswith(search_value):
+                    print('Contact found', {key: value})
+    elif search_criteria == 3:
+        search_value = input('Enter full name to search: ')
+        for key, value in json_data.items():
+            if key == search_value:
+                print('Full name found', {key: value})
+    elif search_criteria == 4:
+        search_value = input('Enter phone number to search: ')
+        if not any(value['phone'].startswith(search_value) for value in json_data.values()):
+            print('Nothing found')
+        else:
+            for key, value in json_data.items():
+                if value['phone'].startswith(search_value):
+                    print('Phone number found', {key: value})
+    elif search_criteria == 5:
+        search_value = input('Enter City to search: ')
+        for key, value in json_data.items():
+            if key.endswith(search_value):
+                print('City found', {key: value})
+    elif search_criteria == 6:
+        search_value = input('Enter notes to search: ')
+        for key, value in json_data.items():
+            if key.endswith(search_value):
+                print('notes found', {key: value})
+
+
+
+print('Hello! Welcome to our PhoneBook')
+start_instruction = """
+To start please enter the value:
+1 - Add new record
+2 - Search
+3 - Update record
+4 - Delete record
+5 - Exit\n
+Your choice: 
+"""
+
+while True:
+    try:
+        choice = int(input(start_instruction))
+        if choice == 1:
+            add_entry()
+        elif choice == 2:
+            search()
+        elif choice == 3:
+            update_record()
+        elif choice == 4:
+            delete_record()
+        elif choice == 5:
+            print("Thank you! See you later!")
+            exit()
+    except ValueError as err:
+        print('Inputted value is not correct')
+    except Exception as err:
+        print(err)
+        pass
