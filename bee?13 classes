@@ -1,0 +1,60 @@
+#TASK_1
+def vars():
+    a = 1
+    b = 2
+    c = 3
+    str = "Numb of var"
+
+print("Number of local varibales is: ", vars.__code__.co_nlocals)
+
+
+
+#TASK_2 FUNC INSIDE ANOTHER FUNC
+def make_operation(a, b):
+    return a+b
+
+def operation(f):
+    def resulting_func(a, b):
+        return f(f(a, b))
+    return resulting_func
+
+result = operation(make_operation)
+print(result(5, 6))
+
+
+#TASK_3  НЕ ГОТОВЕ
+list_1 = [1, 2, 3, 4, 5]
+list_2 = [1, -2, 3, -4, 5]
+
+def choose_func(nums: list_1, list_2):
+    if num > 0 and num ** 2:
+        return square_nums
+
+
+
+def square_nums(nums):
+    return [num ** 2 for num in nums]
+
+
+def remove_negatives(nums):
+    return [num for num in nums if num > 0]
+
+
+def check_numbers(list_1, list_2):
+
+    if num > 0 and num ** 2:
+        return square_nums
+    else:
+        return 'false'
+
+print(check_numbers)
+
+
+
+#print(check_numbers())
+
+
+assert choose_func(list_1, square_nums, remove_negatives) == [1, 4, 9, 16, 25]
+
+assert choose_func(list_2, square_nums, remove_negatives) == [1, 3, 5]
+
