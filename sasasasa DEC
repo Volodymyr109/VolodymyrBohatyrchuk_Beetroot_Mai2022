@@ -1,11 +1,14 @@
 #TASK_1
+from functools import wraps
+
 def logger(func):
-    def name_of_operation(*args):
+    @wraps(func)
+    def wrapper(*args):
         print("This is operation: ", func.__name__, *args)
         return func(*args)
         #function_to_decorate(add, square_all)
 
-    return name_of_operation
+    return wrapper
 
 @logger
 def add(x, y):
@@ -18,7 +21,6 @@ def square_all(*args):
 
 print(add(1, 4))
 print(square_all(4))
-
 #TASK_2
 stopwords_list = ['pepsi', 'BMW']
 
