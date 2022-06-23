@@ -1,7 +1,8 @@
 #TASK_1
 def logger(func):
-    def name_of_operation(add, square_all):
-        print("This is operation: ", add, square_all)
+    def name_of_operation(*args):
+        print("This is operation: ", func.__name__, *args)
+        return func(*args)
         #function_to_decorate(add, square_all)
 
     return name_of_operation
