@@ -1,0 +1,107 @@
+#task_1
+class Person:
+
+    def __init__(self, name, lastname, age):
+        self.name = name
+        self.lastname = lastname
+        self.age = age
+
+    @staticmethod
+    def talk():
+        print(f'my name is {my_person.name} {my_person.lastname},I am {my_person.age} years old')
+
+my_person = Person('Volodoymyr', 'Bohatyrchuk', '21')
+print(my_person.name)
+print(my_person.lastname)
+print(my_person.age)
+Person.talk()
+
+#task_2
+class Dog:
+    age_factor = 7
+
+    def __init__(self, dog_age):
+        self.dog_age = dog_age
+        Dog.age_factor = int(self.dog_age) * 7
+
+    def human_age():
+        print(f'{my_dog.dog_age} years for dog age is {Dog.age_factor} years for human')
+        return()
+
+my_dog = Dog('10')  #АБО ЗРОБИТИ ЩОБ КОРИСТУВАЧ САМ ЗАДАВАВ ВІК СОБАКИ, ТОДІ - my_dog = Dog(input('How to put age your dog to equivalent to age of human: '))
+#my_dog = Dog(input('How to put age your dog to equivalent to age of human: '))
+print(my_dog.age_factor)
+Dog.human_age()
+
+
+#task_3
+#G
+class Tvcontroller:
+
+    def __init__(self, BBC):
+        self.channels = BBC
+        Tvcontroller.BBC = 1
+
+    def __init__(self, TV1000):
+        self.channels = TV1000
+        Tvcontroller.TV1000 = 2
+
+    def __init__(self, Discovery):
+        self.channels = Discovery
+        Tvcontroller.Discovery = 3
+
+    def channels():
+        my_channel = int(input("Turn the chanel \n1 for first_channel\n2 for second_channel\n3 for last_channel\n4 for is_exist"))
+        if my_channel == 1:
+            print('BBC')
+        elif my_channel == 2:
+            print('TV1000')
+        elif my_channel == 3:
+            print('Discovery')
+        elif my_channel == 4:
+            print('EXIT')
+        pass
+
+Tvcontroller.channels()
+
+
+#TASK_3 NO WORKS ЧОРНОВИК
+class TVController:
+
+    def __init__(self, BBC):
+        self.first_channel = BBC
+        TVController.BBC = 1
+
+    def __init__(self, TV1000):
+        self.second_channel = TV1000
+        TVController.TV1000 = 2
+
+    def __init__(self, Discovery):
+        self.last_channel = Discovery
+        TVController.Discovery = 3
+
+    def __init__(self, Exit):
+        self.exit = Exit
+        TVController.Exit = 4
+
+    def first_channel():
+        print(f'BBC')
+        return ()
+
+    def second_channel():
+        print(f'TV1000')
+        return ()
+
+    def last_channel():
+        print(f'first channel')
+        return ()
+
+    def exit():
+        print(f'EXIT')
+        return ()
+
+my_channel = TVController(input('Turn the chanel \n1 for first_channel\n2 for second_channel\n3 for last_channel\n4 for exit'))
+TVController.first_channel()
+TVController.second_channel()
+TVController.last_channel()
+TVController.exit()
