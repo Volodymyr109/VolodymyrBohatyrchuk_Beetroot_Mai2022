@@ -34,7 +34,7 @@ print(my_dog.age_factor)
 Dog.human_age()
 
 
-#task_3
+#task_3 НАПРАЦЮВАННЯ НЕ ГОТОВА ВЕРСІЯ
 #G
 class Tvcontroller:
 
