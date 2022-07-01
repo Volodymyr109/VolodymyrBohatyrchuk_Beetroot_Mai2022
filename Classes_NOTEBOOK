@@ -1,0 +1,71 @@
+"""
+Derive class Contact from the base classes Person and Address and
+use their methods to print out the contact information.
+Extra info:
+* class Address should contain street, city
+* class Person should contain name, email
+* class Contact extends from Person and Address
+* class Notebook that contains people dictionary attribute and
+can add records to it and prints out all the information.
+"""
+
+class Adress():
+
+    def __init__(self, street, city):
+        self.street = street
+        self.city = city
+
+class Person():
+
+    def __init__(self, name, email):
+        self.name = name
+        self.email = email
+
+class Contact(Adress, Person):
+
+    def __init__(self, street, city, name, email):
+        super().__init__(street, city)
+        Person.__init__(self, name, email)
+
+    def __str__(self):
+        return f'Name: {self.name}, Email: {self.email}, Street: {self.street}, City: {self.city}'
+
+
+class Notebook:
+    contacts = {}
+
+    def add(self, contacts_name):
+        Notebook.contacts.update({contacts_name.email: contacts_name})
+
+    def printAll(self):
+        print("All info: ")
+        for rec in Notebook.contacts.values():
+            print(rec)
+
+    def print_one(self, email: str):
+        tmp = Notebook.contacts.get(email, 0)
+        print("Info ")
+        if not tmp:
+            print("No such records")
+        else:
+            print(tmp)
+
+    def remove(self, email: str):
+        tmp = Notebook.contacts.pop(email, 0)
+        print("Deleted element:  ")
+        if not tmp:
+            print("None")
+        else:
+            print(tmp)
+
+
+person1 = Contact("Kyivsta", "Rivne", "Vova", "vova@gmail.com")
+person2 = Contact("hahstreet", "Lviv", "Alex", "Alex@1111gmail.com")
+Notebook1 = Notebook()
+Notebook2 = Notebook()
+Notebook1.add(person1)
+Notebook1.printAll()
+Notebook1.print_one("vova@gmail.com")
+Notebook1.print_one("ggg")
+Notebook1.remove("hhh")
+Notebook1.printAll()
