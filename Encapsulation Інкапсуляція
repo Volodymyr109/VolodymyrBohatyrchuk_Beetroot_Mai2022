@@ -1,0 +1,65 @@
+class Animal:
+    _has_tail = False
+
+    def make_sound(self):
+        pass
+
+    def walk(self):
+        pass
+
+    def _eat(self):
+        print('Eat everything')
+
+    def __evolution(self):
+        print('Evolution completed')
+
+    def perform_evolution(self):
+        self.__evolution()
+
+    def get_has_tail(self):
+        return self._has_tail
+
+    def set_has_tail(self, value=False):
+        if value:
+            self._has_tail = True
+        return self._has_tail
+
+
+class Human(Animal):
+    def make_sound(self):
+        print('Hello!')
+
+    def walk(self):
+        print('Walking on my two')
+
+
+class Dog(Animal):
+    def make_sound(self):
+        print('Wuf!')
+
+    def walk(self):
+        print('Walking on my four')
+
+
+class Elephant(Animal):
+    def make_sound(self):
+        print('Trooooo')
+
+    def walk(self):
+        print('Walking on my four')
+
+
+def make_sound_and_walk(animals):
+    for animal in animals:
+        animal.make_sound()
+        animal.walk()
+
+
+animal = Animal()
+elephant = Elephant()
+dog = Dog()
+human = Human()
+
+animals = [elephant, dog, human]
+
+make_sound_and_walk(animals)
