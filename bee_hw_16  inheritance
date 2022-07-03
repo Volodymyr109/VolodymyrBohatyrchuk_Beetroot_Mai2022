@@ -1,0 +1,42 @@
+#TASK_1
+class Person:
+
+    def __init__(self, name, age, sex):
+        self.name = name
+        self.age = age
+        self.sex = sex
+
+    def __repr__(self):
+        return self.name + ',' + str(self.age) + ',' + self.sex
+
+class Teacher(Person):
+
+    def __init__(self, name, age, sex, salary, working_hours):
+        super().__init__(name, age, sex)
+        self.salary = salary
+        self.working_hours = working_hours
+
+    def __repr__(self):
+        return self.name + ',' + str(self.age) + ',' + self.sex + ',' + str(self.salary) + ',' + self.working_hours
+
+    def print_teacher(self):
+        return f'Name is: {self.name}, age is: {self.age}, sex is: {self.sex}, salary is: {self.salary}, working - {self.working_hours}'
+
+class Student(Person):
+
+    def __init__(self, name, age, sex, study):
+        super().__init__(name, age, sex)
+        self.study = study
+
+    def __repr__(self):
+        return self.name + ',' + str(self.age) + ',' + self.sex + ',' + self.study
+
+    def print_student(self):
+        return f'Name is: {self.name}, age is: {self.age}, sex is: {self.sex}, {self.study} at studied'
+
+my_teacher = Teacher('John Snow', '35', 'Men', '15000', '160 hours per month')
+my_teacher.print_teacher()
+print(my_teacher.print_teacher())
+my_student = Student('Denis Petrov', '54', 'Trans', 'ingeneur')
+my_student.print_student()
+print(my_student.print_student())
