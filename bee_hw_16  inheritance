@@ -40,3 +40,47 @@ print(my_teacher.print_teacher())
 my_student = Student('Denis Petrov', '54', 'Trans', 'ingeneur')
 my_student.print_student()
 print(my_student.print_student())
+
+
+#TASK_2
+#ВОНА У МЕНЕ НЕ ПРАЦЮЄ, НАМАГА.ЮСЬ ЗРОЗУМІТИ ЧОМУ 0_0
+
+class Mathematician:
+
+    list1 = [7, 11, 5, 4]
+    list2 = [26, -11, -8, 13, -90]
+    list3 = [2001, 1884, 1995, 2003, 2020]
+
+    def square_nums(self, list1):
+        self.list1 = list1
+        for i in list1:
+            print(i, 'square', 2, ',' '=', i*2)
+
+    def remove_positivies(self, list2):
+        self.list2 = list2
+        for i in list2:
+            if i > 0:
+                list2.remove(i)
+        print(list2)
+
+    def filter_leaps(self, list3):
+        self.list3 = list3
+        for i in list3:
+            if i != 2001 and 1995 and 2003:
+                list3.remove(i)
+
+        print(list3)
+
+
+assert Mathematician.remove_positives([26, -11, -8, 13, -90]) == [-11, -8, -90]
+assert Mathematician.square_nums([7, 11, 5, 4]) == [49, 121, 25, 16]
+assert Mathematician.filter_leaps([2001, 1884, 1995, 2003, 2020]) == [1884, 2020]
+
+squared = Mathematician()
+print(squared.square_nums)
+remove = Mathematician()
+print(remove.remove_positivies)
+filter = Mathematician()
+print(filter.filter_leaps)
+
+
