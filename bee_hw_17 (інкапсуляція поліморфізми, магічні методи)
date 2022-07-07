@@ -63,3 +63,14 @@ class Book:
 class Author:
 
     pass
+
+
+
+#TASK_3
+class Fraction:
+    pass
+
+if __name__ == "__main__":
+    x = Fraction(1, 2)
+    y = Fraction(1, 4)
+    x + y == Fraction(3, 4)
