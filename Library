@@ -1,0 +1,121 @@
+#Погрався з output даних про книгу автора
+
+class Library:
+
+    def __init__(self, name):
+        self.name = name
+
+class Book(Library):
+
+    def __init__(self, name, year, author):
+        super().__init__(name)
+        self.year = int(year)
+        self.author = author
+
+
+class Author:
+
+    def __init__(self, name, country, birthday, books):
+        self.name = name
+        self.country = country
+        self.birthday = birthday
+        self.books = books
+
+
+library = Library
+library.new_library = Library('MY LIBRARY')
+print(library.new_library.name)
+
+book = Book
+book.new_book_1 = Book('Im westen nicht neues', 1928, 'E.M. Remarque')
+print(book.new_book_1.name)
+print(book.new_book_1.year)
+print(book.new_book_1.author)
+
+book = Book
+book.new_book_2 = Book('Drei Kameraden', 1936, 'E.M. Remarque')
+print(book.new_book_2.name)
+print(book.new_book_2.year)
+print(book.new_book_2.author)
+
+book = Book
+book.new_book_3 = Book('Anleitung zum ungluecklichsein', 1983 , 'Paul Watzlawick')
+print(book.new_book_3.name)
+print(book.new_book_3.year)
+print(book.new_book_3.author)
+
+my_author = Author
+my_author.new_author = Author('Erich-Marie Remarque', 'Deutschland', 1898, 'Im westen nicht neues, Drei Kameraden')
+print(my_author.new_author.name)
+print(my_author.new_author.country)
+print(my_author.new_author.birthday)
+print(my_author.new_author.books)
+
+my_author_2 = Author
+my_author_2.new_author = Author('Paul Watzlawick', 'Österrecih', 1921 , 'Anleitung zum ungluecklichsein')
+print(my_author_2.new_author.name)
+print(my_author_2.new_author.country)
+print(my_author_2.new_author.birthday)
+print(my_author_2.new_author.books)
+
+
+#Сподіваюсь, що логіку прописав правильно, тільки помилки лізуть)
+class Library:
+
+    #books = ['Im westen nicht neues', 'Kritik der praktischen vernunft', 'Drei Kameraden', 'Anleitung zum ungluecklichsein']
+    #authors = ['E.M. Remarque', 'E. Kant', 'E.M. Remarque', 'P. Watzlawick']
+
+    def __init__(self, name, books, authors):
+        self.name = name
+        self.books = []
+        self.authors = []
+
+    def new_book(self):
+        raise NotImplementedError(' Must be implemented by a sub class')
+
+
+    def group_by_author(author: Author):
+        for autor in autors:
+            autor.group_by_author()
+        return f'author of this books is {author.authors}'
+
+
+    def group_by_year(year: int):
+        for year in years:
+            year.group_by_year()
+        return f'year of this books is {year.years}'
+        pass
+
+class Book(Library):
+
+    def __init__(self, name, year, author):
+        super().__init__(name)
+        self.year = int(year)
+        self.author = author
+
+
+    def __repr__(self):
+        return self.name + ',' + self.year + ',' + self.author
+
+class Author(Library):
+
+    def __init__(self, name, country, birthday, books):
+        super().__init__(name)
+        self.country = country
+        self.birthday = birthday
+        self.books = books
+
+    def __repr__(self):
+        return self.name + ',' + self.country + ',' + self.birthday + ',' + self.books
+
+    def print_author(self):
+        return f'Name is {self.name} \n Author is from {self.country} \n B-Day is {self.birthday} \n Books are: {self.books}'
+
+
+
+library = Library
+library.new_book = Book('Im westen nicht neues', 1928, 'E.M. Remarque')
+print(library.new_book.name)
+print(library.new_book.year)
+print(library.new_book.author)
+
