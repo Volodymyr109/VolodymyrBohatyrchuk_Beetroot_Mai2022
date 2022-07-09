@@ -151,11 +151,22 @@ print(library.new_book.author)
 
 
 
-"""#TASK_3
+"""#TASK_3???????????????????????? взагалі не те щось походу 0_0
 class Fraction:
     pass
 
-if __name__ == "__main__":
+
+def main():
     x = Fraction(1, 2)
     y = Fraction(1, 4)
-    x + y == Fraction(3, 4)"""
+    x + y == Fraction(3, 4)
+
+    print(Fraction.__cmp__(x, y),Fraction.__str__(x),Fraction.__str__(y)
+    if __name__ == main():        
+        print("It is a fraction")
+    else:
+        print("It is not a fraction")
+    return 0
+
+if __name__ == '__main__':
+    main()
