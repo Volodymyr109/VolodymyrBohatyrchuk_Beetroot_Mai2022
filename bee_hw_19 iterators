@@ -1,0 +1,41 @@
+#TASK_1
+def with_index(iterable, start=0):
+    n = start
+    for elem in iterable:
+        yield n, elem
+        n +=1
+
+print(with_index)
+
+#Task_2
+def in_range(start, end, i):
+    x = start
+    y = end
+    i = i
+    for elem in iterable:
+        yield x, y, i, elem
+        x = 'start'
+        y = 'end'
+        i +=1
+        print(x, y, i)
+
+#Task_3
+numbers = [0, 1, 2, 3, 4, 5]
+
+def nums_1():
+    num1 = 0
+    yield num1
+    num2 = 1
+    yield num2
+    while True:
+        num3 = num2 + 2
+        yield num3
+        num1 = num2
+        num2 = num3
+
+n = nums_1()
+count = 0
+while count < 10:
+    print(next(n))
+    count += 1
+
