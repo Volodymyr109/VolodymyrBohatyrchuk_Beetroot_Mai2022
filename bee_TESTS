@@ -1,0 +1,15 @@
+#TEST_EXAMPLE
+import unittest
+import function_examples
+
+class NameTestCase(unittest.TestCase):
+
+    def test_book_name(self):
+        new_book_1 = function_examples.new_book_1("Im westen nicht neues', 1928, E.M. Remarque")
+        author_1 = function_examples.author_1("E.M. Remarque")
+        year = function_examples.year(int(1928))
+        self.assertEqual(new_book_1, "Im westen nicht neues', 1928, E.M. Remarque")
+        self.assertEqual(author_1, "E.M. Remarque")
+        self.assertEqual(year, int(1928))
+
+unittest.main()
