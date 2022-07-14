@@ -1,0 +1,43 @@
+#ДЗ 18 ДЕКОРАТОРИ ТАСК 3
+
+from functools import wraps
+
+
+
+
+
+id_ - is just a random unique integer
+
+
+class Boss:
+
+    def __init__(self, id_: int, name: str, company: str):
+        self.id = id_
+
+        self.name = name
+
+        self.company = company
+
+        self.workers = []
+
+
+class Worker:
+
+    def __init__(self, id_: int, name: str, company: str, boss: Boss):
+        self.id = id_
+
+        self.name = name
+
+        self.company = company
+
+        self.boss = boss
+
+def convert_type(type, value):
+    pass
+
+def to_int(func):
+    @wraps(func)
+    def wrapper(*args, **kwargs):
+        result = func(*args, **kwargs)
+        return convert_type(int, result)
+    return wrapper
