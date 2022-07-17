@@ -1,0 +1,89 @@
+#TASK_1
+from collections import deque
+
+stack = deque()
+
+li=[1,2,3]
+
+li.append(4)
+li.append(5)
+li.append(6)
+
+print('\n Our List: ')
+print(li)
+
+print('\nElements returned:')
+print(li.pop())
+print(li.pop())
+print(li.pop())
+print(li.pop())
+print(li.pop())
+print(li.pop())
+
+
+#TASK_2 HOW TO CHECK BRANCHES
+a = input("Input right symbols "'()'" or "'[]'" or "'{}'" : ")
+stack = []
+flVerify = True
+
+for li in a:
+    if li in "([{":
+        stack.append(li)            #FIRST IN
+    elif li in "}])":
+        if len(stack) == 0:
+            flVerify = False
+            break
+
+        br = stack.pop()              #LAST OUT
+        if br == '(' and li == ')':
+            continue
+        if br == '[' and li == ']':
+            continue
+        if br == '{' and li == '}':
+            continue
+
+if flVerify and len(stack) == 0:
+    print("braces, and curly brackets are "'balanced'"")
+else:
+    print("FALSE")
+
+print('\nPrinting Characters from input stack: ')
+print(a)
+
+
+#TASK_3 HOW TO GET ITEM FROM STACK
+class Stack:
+    def __init__(self):
+        self._items = []
+
+    def add_front(self, item):
+        self._items.append(item)
+
+    def add_rear(self, item):
+        self._items.insert(0, item)
+
+#get_from_stack
+    def get_from_stack(self, item):
+        try:
+            self._items.pop(item)
+            return f'get from stack {self._items.pop}'
+        except IndexError as err:
+            print(err)
+            print('VALUE ERROR, pls get a right item from a stack\nand our list without changes')
+
+    def __repr__(self):
+        return f"<Our list: {self._items} >"
+
+    def __str__(self):
+        return self.__repr__()
+
+s = Stack()
+s.add_rear('dog')
+s.add_front('cat')
+s.add_front('lion')
+print(s)
+
+#OR print(s.get_from_stack(4)) TO RAISE A ERROR
+print(s.get_from_stack(1))                       #GET 1 ELEMENT FROM LIST
+print('Our list after get from stack:')
+print(s)                                      #OUTPUT after get from stack(1) or another element
