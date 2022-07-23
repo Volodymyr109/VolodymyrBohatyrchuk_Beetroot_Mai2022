@@ -1,0 +1,129 @@
+#Task_1
+import re
+class Email:
+
+    def __init__(self, email):
+        type(self).validate(email) #def __init__(self, email):  type(self).validate(email)"ось це не зовсім зрозумів чому не можна передати як self.email = email"
+
+    @classmethod
+    def validate(Email, email):
+        if re.match(r"(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$)", email):
+            print("VALIDATE")
+        else:
+            print("NO AVAILABLE")
+
+email1 = Email('heheh@gmail.com')
+email2 = Email('hallo#gmail.com')
+email3 = Email('prived%$#@gmail.com')
+email4 = Email('YOHOHO@kek-mail.com')
+
+print(email1.validate)
+print(email2.validate)
+print(email3.validate)
+print(email4.validate)
+
+
+#TASK_2 хочу зрозуміти чи я правильно написав логіку
+class Boss:
+
+    def __init__(self, id_: int, name: str, company: str):
+        self.id = id_
+        self.name = name
+        self.company = company
+        self.workers = []
+
+class Worker:
+
+    def __init__(self, id_: int, name: str, company: str, boss: Boss):
+        self.id = id_
+        self.name = name
+        self.company = company
+        self.boss = boss
+
+    @property
+    def new_boss(self):
+        return self.boss
+
+    @new_boss.setter
+    def new_boss(self, boss):
+        self.boss = boss
+        self.boss.workers.append(self)
+        return f'{boss.name}'
+
+b1 = Boss(11111, 'Ferdinand', 'Porsche')
+b2 = Boss(22222, 'Johan', 'BeMeWe')
+w1 = Worker(54321, 'CJ', 'Porsche', b1)
+print('Boss1 id is:', b1.id, '     ---Boss2 id is:', b2.id)
+print('Boss1 name is:', b1.name, ' ---Boss2 name is:', b2.name)
+print('Company1 is:', b1.company, '---Company2 is:',b2.company)
+
+print('Worker1 id is: ', w1.id)
+print('Worker1 name is: ', w1.name)
+print('Worker1 boss is: ', b1.name)
+del b1.name
+
+new_boss = b2.name
+print('New boss for CJ is: ', new_boss) #may to be a b2
+
+
+
+
+#TASK_3 НАче логіку прописав але на цьому і завис.....
+class TypeDecorators:
+
+    def convert_type(type, value):
+        pass
+
+    def to_int(func):
+        @wraps(func)
+        def wrapper(*args, **kwargs):
+            result = func(*args, **kwargs)
+            return convert_type(int, result)
+        return wrapper
+
+    def to_str(self, func):
+        @wraps(func)
+        def wrapper(*args, **kwargs):
+            result = func(*args, **kwargs)
+            return convert_type(str, result)
+        return wrapper
+
+
+    def to_bool(self, func):
+        @wraps(func)
+        def wrapper(*args, **kwargs):
+            result = func(*args, **kwargs)
+            return convert_type(bool, result)
+        return wrapper
+
+    def to_float(self, func):
+        @wraps(func)
+        def wrapper(*args, **kwargs):
+            result = func(*args, **kwargs)
+            return convert_type(float, result)
+        return wrapper
+
+
+@TypeDecorators.to_str
+def do_nothing(string: str):
+    return string
+
+@TypeDecorators.to_int
+def do_something(integer: str):
+    return integer
+
+@TypeDecorators.to_bool
+def do_other(val):
+    return val
+
+@TypeDecorators.to_float
+def do_anything(val):
+    return val
+
+print(do_nothing('25'))
+print(do_something('25'))
+print(do_other('25'))
+print(do_anything('25'))
+
+assert do_nothing('25') == 25
+assert do_something('True') is True
