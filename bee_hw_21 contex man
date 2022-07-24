@@ -17,7 +17,7 @@ class Write:
         return log()
 
     def __exit__(self, file):
-        self.file = file
+        print("Exit from a file")
         self.file.close()
 
 #Task_2
