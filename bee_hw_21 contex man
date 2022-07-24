@@ -7,7 +7,7 @@ class Write:
     list = []
 
     def op(self):
-        with open('hallo.txt', 'w') as f:
+        with open('phonebook.json', 'w') as f:
             f.write('HALLO\n')
             f.write('HELLO\n')
         print(f)
