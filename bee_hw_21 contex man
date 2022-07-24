@@ -1,0 +1,21 @@
+#Task_1 Чи я правильно прописав логіку для логера, with та exit ? При виводі видає помилку,
+#але op функція працює і записує в файл сама по собі якщо  все інше закоментити
+from setup_logger import logger
+
+class Write:
+
+    list = []
+
+    def op(self):
+        with open('hallo.txt', 'w') as f:
+            f.write('HALLO\n')
+            f.write('HELLO\n')
+        print(f)
+
+    def log(self):
+        logger.info('class Write: writting')
+        return log()
+
+    def __exit__(self, file):
+        self.file = file
+        self.file.close()
