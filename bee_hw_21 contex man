@@ -8,8 +8,8 @@ class Write:
 
     def op(self):
         with open('phonebook.json', 'w') as f:
-            f.write('HALLO\n')
-            f.write('HELLO\n')
+            f.write('KEK\n')
+            f.write('+380674562356\n')
         print(f)
 
     def log(self):
@@ -19,3 +19,28 @@ class Write:
     def __exit__(self, file):
         self.file = file
         self.file.close()
+
+#Task_2
+import unittest
+import function_examples
+
+class Test(unittest.TestCase)
+
+    list = []
+
+    def test_name(self):
+        name_1 = function_examples.name_1("Volodymyr Bohatyrchuk")
+        number_1 = function_examples.number_1("+380964629560")
+        city_1 = function_examples.city_1("Rivne")
+        self.assertEqual(name_1, "Volodymyr Bohatyrchuk")
+        self.assertEqual(number_1, "380964629560")
+        self.assertEqual(city_1, "Rivne")
+
+
+    # def op(self):
+    #     with open('phonebook.json', 'w') as f:
+    #         f.write('KEK\n')
+    #         f.write('+380674562356\n')
+    #     print(f)
+
+unittest.main()
