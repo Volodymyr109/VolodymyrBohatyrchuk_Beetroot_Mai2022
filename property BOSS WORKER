@@ -1,0 +1,40 @@
+class Boss:
+
+    def __init__(self, id_: int, name: str, company: str):
+        self.id = id_
+        self.name = name
+        self.company = company
+        self.workers = []
+
+class Worker:
+
+    def __init__(self, id_: int, name: str, company: str, boss: Boss):
+        self.id = id_
+        self.name = name
+        self.company = company
+        self.boss = boss
+
+    @property
+    def new_boss(self):
+        return self.boss
+
+    @new_boss.setter
+    def new_boss(self, boss):
+        self.boss = boss
+        self.boss.workers.append(self)
+        return f'{boss.name}'
+
+b1 = Boss(11111, 'Ferdinand', 'Porsche')
+b2 = Boss(22222, 'Johan', 'BeMeWe')
+w1 = Worker(54321, 'CJ', 'Porsche', b1)
+print('Boss1 id is:', b1.id, '     ---Boss2 id is:', b2.id)
+print('Boss1 name is:', b1.name, ' ---Boss2 name is:', b2.name)
+print('Company1 is:', b1.company, '---Company2 is:',b2.company)
+
+print('Worker1 id is: ', w1.id)
+print('Worker1 name is: ', w1.name)
+print('Worker1 boss is: ', b1.name)
+del b1.name
+
+new_boss = b2.name
+print('New boss for CJ is: ', new_boss) #may to be a b2
