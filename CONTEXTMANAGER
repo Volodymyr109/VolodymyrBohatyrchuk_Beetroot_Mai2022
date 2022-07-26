@@ -1,0 +1,42 @@
+# file = open('phonebook.json', 'w')
+# file.write([1, 2, 3])
+# file.close()
+# class Write:
+#
+#     def open(self):
+#         for i in range(10000000000):
+#             with open('hallo.txt', 'w') as f:
+#                 list.append(f)
+
+# with open('hallo.txt', 'w') as f:
+#     f.write('hi')
+#     f.write('hallo')
+# print(f)
+#
+#
+#Task_3
+from contextlib import contextmanager
+
+@contextmanager
+def func_1(filename, method):
+    print("Put! ")
+    file = open(filename, method)
+    yield file
+    file.close()
+    print("Exit")
+
+with func_1("hallo.txt", "w") as f:
+     print("Hello")
+     f.write("Bye")
+
+# для деліту з файлу як зрозумів логіку функції щоб її описати, то r на інпут та w на аутпут output.write(line)
+with open("hallo.txt", "r") as file_input:
+    with open("bye.txt", "w") as output:
+        for line in file_input:
+            if line.strip() != "file to delete: ":
+                output.write(line)
+
+# це для видалення з файлу
+with open('hallo.txt', 'w') as f:
+    new_text = f.replace(' ', ' ')
+    f.write(new_text)
