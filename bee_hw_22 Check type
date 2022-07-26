@@ -1,0 +1,57 @@
+import re
+from typing_extensions import Protocol
+
+class Email:
+
+    def __init__(self, email):
+        type(self).validate(email)
+
+    @classmethod
+    def validate(Email, email):
+        if re.match(r"(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$)", email):
+            print("VALIDATE")
+        else:
+            print("NO AVAILABLE")
+
+    flag = True
+    if flag == True:
+        print('True check')
+    else:
+        print('False check')
+###########################################################################################
+class Test(Email):
+
+    def __init__(self, e: Email) -> None:
+        self.email: Email = e
+
+    def __init__(self, n: str) -> None:
+        self.n = n
+
+    @classmethod
+    def create(cls, n: str) -> "Test":
+        return cls(n)
+###########################################################################################
+class Email1(Protocol):
+
+    def check(self, email: str) -> None:
+        return f'mail is corect {email}'
+print(check)
+
+e = Email
+print(type(e))
+t = Test(e)
+print(type(t))
+### test classmethod
+t = Test(0)
+print(type(t))
+
+
+
+# email1 = Email('heheh@gmail.com')
+# email2 = Email('hallo#gmail.com')
+# email3 = Email('prived%$#@gmail.com')
+# email4 = Email('YOHOHO@kek-mail.com')
+# print(email1.validate)
+# print(email2.validate)
+# print(email3.validate)
+# print(email4.validate)
