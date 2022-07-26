@@ -1,0 +1,74 @@
+#how to find factorial of num n
+
+def factorial(n):
+    if n ==0:
+        return 1
+    #RECURSION
+    else:
+        return n * factorial(n-1)
+
+#EXAMPLE OF RECURSION
+def recursive(value: int):
+    print(value)
+    if value > 4:
+        return
+    recursive(value+1)
+    print(value)
+
+recursive(1)
+
+#RECURSION SUM OF NUMS WITH A FUNC
+def sum_numbers(li: list):
+    su = 0
+    if not li:
+        return su
+    else:
+        su = sum_numbers(li[1:])
+        print(f'recursion call: {su}')
+        su = su + li[0]
+        print(f'add sum + li[0] = {su}')
+        return su
+
+li = [2, 3, 8]
+li1 = []
+summ = sum_numbers(li)
+print(li)
+print(f'sum = {summ}')
+
+#EXAMPLE REVERSING OF LISTS
+li = [2, 3, 8]
+def reverse_list(li: list):
+    reversed_li = []
+    if not li:
+        return reversed_li
+    else:
+        lis = reverse_list(li[1:])
+        #reverse_list(li[1:])
+        print(lis)
+        lis.append(li[0])
+        return lis
+
+print(reverse_list(li))
+
+#FACT exp
+def factorial(n):
+    if n <= 0:
+        return 1
+    #RECURSION
+    else:
+        return n * factorial(n-1)
+
+print(factorial(6))
+#FILE SEARCHER
+import os
+
+def get_files(path, depth=0):
+    for element in os.listdir(path):
+        print('  L'* depth, element)
+        if os.path.isdir(element):
+            get_files(os.path.join(path, element), depth+1)
+#           get_files(os.path.join(path, element))
+
+
+path = os.path.abspath(os.path.join(__file__, "../.."))
+get_files(path, depth=0)
