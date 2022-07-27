@@ -1,0 +1,65 @@
+#TASK_1 Завантажую в такому вигляді те що працює щоб не висіла дз, але до кінця так і не розібрався як знайти групи сильного звʼязку
+from collections import defaultdict
+graph = {
+  'A' : ['B','C'],
+  'B' : ['D', 'E'],
+  'C' : ['F'],
+  'D' : [],
+  'E' : ['F'],
+  'F' : []
+}
+
+visited = set()
+def dfs(visited, graph, x):
+    if x not in visited:
+        print(x)
+        visited.add(x)
+        for neighbour in graph[x]:
+            dfs(visited, graph, neighbour)
+
+#print('Following is the Depth-First Search')
+#dfs(visited, graph, 'B')  # не розумію чого воно виводить B D E F якщо в графі 'B' : ['D', 'E']
+
+def strongly(visited, graph, x):
+    for x in range(graph):
+        if visited[x] == False:
+            graph(x, visited, graph)
+            return x
+    while graph:
+        x = graph.pop()
+        if visited[x] == False:
+            graph(x, visited)
+            return
+
+print('Following is the Depth-First Search')
+dfs(visited, graph, 'B')  #не розумію чого воно виводить B D E F якщо в графі 'B' : ['D', 'E']
+print('Following is the Depth-First Search strongly connect')
+print(strongly(visited, graph, 'B'))
+
+#Task_2 наче я зрозумів, погрався з аутпутом, що воно перебирає символи в бік я взагалі не зрозумів прикол з пробілами, у прикладі відступи по два пробіли, чого коли робиш нормальні відступи то воно не працює ЛОЛ
+graph = {
+  'A' : ['B','C'],
+  'B' : ['D', 'E'],
+  'C' : ['F'],
+  'D' : [],
+  'E' : ['F'],
+  'F' : []
+}
+
+visited = []
+queue = []
+
+def bfs(visited, graph, node):
+  visited.append(node)
+  queue.append(node)
+
+  while queue:
+    s = queue.pop(0)
+    print(s, end = " ")
+
+    for neighbour in graph[s]:
+      if neighbour not in visited:
+        visited.append(neighbour)
+        queue.append(neighbour)
+
+bfs(visited, graph, 'B')
