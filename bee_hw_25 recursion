@@ -1,0 +1,83 @@
+# Task_1 Чому воно не працює :D 
+from typing import Optional
+def to_power(x: Optional[int, float], exp: int) -> Optional[int, float]:
+    if (exp == 1):
+        return (x)
+    if (exp != 1):
+        return (x * to_power(x, exp - 1))
+
+# перевірка
+    if to_power(2, 3) == 8:
+        print('True')
+    if to_power(3.5, 2) == 12.25:
+        print('True')
+    if to_power(2, -1) == 8:
+        print('False, exp cal be > 0')
+
+
+x = int(input("Enter a numb x: "))
+exp = int(input("Enter exp value: "))
+print("Result is: ", to_power(x, exp))
+
+
+#TASK_2
+from typing import Optional
+def is_palindrome(looking_str: str, index: int = 0) -> bool:
+    return looking_str == looking_str[::-1]
+
+a = 'mom'
+b = 'sassas'
+c = 'o'
+ans = is_palindrome(a)
+ans = is_palindrome(b)
+ans = is_palindrome(c)
+
+if ans:
+    print("True")
+else:
+    print("False")
+
+#TASK_3
+from typing import Optional
+def mult(a: int, n: int) -> int:
+    if a == 0:
+        return 0
+    elif n < 0:
+        return 0
+    else:
+        return a + mult(a,n-1)
+
+print(mult(10, 200))
+
+#Task_4
+def reverse(input_str: str) -> str:
+    return input_str[::-1]
+
+if reverse("hello") == "olleh":
+    print('True')
+else:
+    print('False')
+########### o
+if reverse('o') == 'o':
+    print('True')
+else:
+    print('False')
+
+input_str = reverse("hello")
+print(input_str)
+
+#Task_5 як реалізувати це все через рекурсію?
+def sum_of_digits(digit_string: str) -> int:
+    if sum_of_digits(digit_string) == 0:
+        return 0
+    else:
+        print('Not corect number')
+
+if sum_of_digits(26) == 8:
+    print('True')
+else:
+    print('False')
+
+n = int(input("Enter num: "))
+sum_of_digits(n)
+print(sum_of_digits)
