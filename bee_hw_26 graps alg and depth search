@@ -1,0 +1,53 @@
+#Task_1 перекатав задачку з інету коли читав про пошук в глибину. НІЧОГО не зрозуміло, але коли є приклад перед очима, то окей) Друга до таску 1 це вже моя по аналогіЇ
+"""
+graph = {
+  '5' : ['3','7'],
+  '3' : ['2', '4'],
+  '7' : ['8'],
+  '2' : [],
+  '4' : ['8'],
+  '8' : []
+}
+
+visited = set() #для бачення того де ми шукаємо????
+def depth_first_search(visited, graph, node):
+    if node not in visited:
+        print(node)
+        visited.add(node)
+        for neighbour in graph[node]:
+            depth_first_search(visited, graph, neighbour)
+
+print("Following is the Depth-First Search")
+depth_first_search(visited, graph, '2')
+"""
+
+#TASK_1
+list = {
+    'key': ['1232424','2323232'],
+    'name': ['Johan', 'Tom'],
+    'number': ['+380964562345', '+4923242342'],
+    'city': ['Rivne', 'Dresden'],
+    '1': []
+}
+visited = set()
+def dfs(visited, list, x):
+    if x not in visited:        #не зрозумів що воно робить
+        print(x)
+        visited.add(x)          #навіщо тут visited.add
+        for neighbour in list[x]:
+            dfs(visited, list, neighbour)
+
+print('Following is the Depth-First Search')
+dfs(visited, list, 'name')
+
+#чому не можна цю функцію реалізувати так наприклад?
+def dfs(visited, list, x):
+    for contact in list[x]:
+        dfs(visited, list, contact)
+        return x
+
+#Task_2
+
+Using breadth-first search write an algorithm that can determine the shortest path from each vertex to every other vertex. This is called the all-pairs shortest path problem.
+
+
