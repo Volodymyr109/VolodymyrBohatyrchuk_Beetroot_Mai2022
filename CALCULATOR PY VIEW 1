@@ -1,0 +1,98 @@
+#CALCIULATOR WITH VISUAL
+
+import sys
+from functools import partial
+
+from PyQt6.QtCore import Qt
+from PyQt6.QtWidgets import QApplication, QMainWindow, QWidget, QVBoxLayout, QLineEdit, QGridLayout, QPushButton
+
+
+class PyCalcView(QMainWindow):
+
+    def __init__(self):
+        super().__init__()
+
+        self.setWindowTitle('Python calculator')
+        self.setFixedSize(300, 400)
+        self.base_layout = QVBoxLayout()
+        self._setCentralWidget = QWidget(self)
+        self.setCentralWidget(self._setCentralWidget)
+        self._setCentralWidget.setLayout(self.base_layout)
+        self._create_display()
+        self._create_buttons()
+
+    def _create_display(self):
+        self.display = QLineEdit()
+        self.display.setFixedHeight(35)
+        self.display.setAlignment(Qt.AlignmentFlag.AlignRight)
+        self.display.setReadOnly(True)
+        self.base_layout.addWidget(self.display)
+
+    def _create_buttons(self):
+        self.buttons = {}
+        buttonsLayout = QGridLayout()
+        buttons = {'7': (0, 0),
+                   '8': (0, 1),
+                   '9': (0, 2),
+                   '/': (0, 3),
+                   'C': (0, 4),
+                   '4': (1, 0),
+                   '5': (1, 1),
+                   '6': (1, 2),
+                   '*': (1, 3),
+                   '(': (1, 4),
+                   '1': (2, 0),
+                   '2': (2, 1),
+                   '3': (2, 2),
+                   '-': (2, 3),
+                   ')': (2, 4),
+                   '0': (3, 0),
+                   '00': (3, 1),
+                   '.': (3, 2),
+                   '+': (3, 3),
+                   '=': (3, 4),
+                   }
+        for btnText, pos in buttons.items():
+            self.buttons[btnText] = QPushButton(btnText)
+            self.buttons[btnText].setFixedSize(40, 40)
+            buttonsLayout.addWidget(self.buttons[btnText], pos[0], pos[1])
+        self.base_layout.addLayout(buttonsLayout)
+
+    def setDisplayText(self, text):
+        self.display.setText(text)
+        self.display.setFocus()
+
+    def displayText(self):
+        return self.display.text()
+
+    def clearDisplay(self):
+        self.setDisplayText('')
+
+
+class PyCalcCtrlr:
+
+    def __init__(self, view):
+        self.view = view
+        self.connect_signal()
+
+    def build_expression(self, sub_exp):
+        exp = self.view.displayText() + sub_exp
+        self.view.setDisplayText(exp)
+
+    def connect_signal(self):
+        for btnText, btn in self.view.buttons.items():
+            if btnText not in ['C', '=']:
+                btn.clicked.connect(partial(self.build_expression, btnText))
+        self.view.buttons['C'].clicked.connect(self.view.clearDisplay)
+
+
+def main():
+    calc = QApplication(sys.argv)
+    view = PyCalcView()
+    view.show()
+    PyCalcCtrlr(view)
+    sys.exit(calc.exec())
+
+
+if __name__ == '__main__':
+    main()
