@@ -1,0 +1,17 @@
+from functools import partial
+
+class PycalcController:
+
+    def __init__(self, view):
+        self.view = view
+
+    def build_expression(self, sub_exp):
+        exp = self.view.displayText + sub_exp
+        self.view.setDisplayText(exp)
+
+
+    def connect_signal(self):
+        for btnText, btn in self.view.buttons.items():
+            if btnText not in ['C', '=']:
+                btn.clicked.connect(partial(self.build_expression, btnText))
+        self.view.buttons['C'].clicked.connect(self.view.clearDisplay())
