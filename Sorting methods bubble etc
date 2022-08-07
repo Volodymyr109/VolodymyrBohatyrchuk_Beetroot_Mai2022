@@ -1,0 +1,78 @@
+#bubble sort
+#FOR  bubble sort
+def bubble_sort(array):
+    for pass_num in range(len(array) - 1, 0, -1):
+        for i in range(pass_num):
+            if array[i] > array[i + 1]:
+                temp = array[i]
+                array[i] = array[i + 1]
+                array[i + 1] = temp
+#WHILE  bubble sort
+def bubble_sort_while(array):
+    swap = True
+    while swap:
+        for i in range(len(array)-1):
+            if array[i] > array[i + 1]:
+                temp = array[i]
+                array[i] = array[i + 1]
+                array[i + 1] = temp
+        swap = False
+
+li = [1, 9, 5, 6, 7, 3]
+bubble_sort(li)
+print(li)
+
+#SELECTION SORT
+def selection_sort(array):
+    for fill_slot in range(len(array) - 1, 0, -1):
+        position_max = 0
+        print(position_max, fill_slot)
+        for location in range(1, fill_slot + 1):
+            print(location)
+            if array[location] > array[position_max]:
+                position_max = location
+            print(array[location], array)
+        temp = array[fill_slot]
+        array[fill_slot] = array[position_max]
+        array[position_max] = temp
+
+li = [1, 9, 5, 6, 7, 3]
+selection_sort(li)
+print(li)
+
+#insertion sort
+def insertion_sort(array):
+    for index in range(1, len(array)):
+        current_value = array[index]
+        position = index
+        while position > 0 and array[position - 1] > current_value:
+            array[position] = array[position - 1]
+            position = position - 1
+
+        array[position] = current_value
+
+li = [1, 9, 5, 6, 7, 3]
+insertion_sort(li)
+print(li)
+
+#shell sort
+def shell_sort(array):
+    sublist_count = len(array) // 2
+    while sublist_count > 0:
+        for start_position in range(sublist_count):
+            gap_insertion_sort(array, start_position, sublist_count)
+
+        sublist_count = sublist_count // 2
+def gap_insertion_sort(array, start, gap):
+    for i in range(start + gap, len(array), gap):
+        current_value = array[i]
+        position = i
+
+        while position >= gap and array[position - gap] > current_value:
+            array[position] = array[position - gap]
+            position = position - gap
+
+        array[position] = current_value
+li = [1, 9, 5, 6, 7, 3]
+shell_sort(li)
+print(li)
