@@ -1,0 +1,10 @@
+select d.department_name, l.*, c.country_name, r.region_name from locatiom l
+    left join departments d on d.location = l.location_id
+    left join countries c on l.country_id = l.country_id
+    left join regions r on c.region_id = r.region_id
+where depart_name is not NULL and r.region_name = 'Europe';
+
+select depart_name, employees
+from (select department_id, count(1) employees from employees group by 1) x
+left join departments using(department_id) where depart_name is not null
+order by employees;
