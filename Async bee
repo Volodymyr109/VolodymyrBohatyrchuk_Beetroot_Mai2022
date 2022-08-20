@@ -1,0 +1,72 @@
+import asyncio
+import threading
+from asyncio import events
+import random
+import time
+from asyncio import Future
+
+async def child_future(future):
+    print('child future')
+    await asyncio.sleep(1)
+    print('child done')
+    future.done()
+    future.set_result('future is resolver')
+    return 'child func complete'
+
+async def parents(future):
+    print('parent waits for a child')
+    print(await future)
+    return 'parent func complete'
+
+async def main():
+    future = Future()
+    print(await asyncio.gather(parents(future), child_future(future)))
+
+asyncio.run(main())
+
+
+#CALC WITH ASYNC
+import asyncio
+import threading
+from asyncio import events
+import random
+import time
+
+
+async def num_calc(name, number): #Macht die TAT
+    f = 1
+    for i in range(2, number+1):
+        await asyncio.sleep(1)
+        f *= i
+    print(f'task {name}, mult {number} = {f}')
+    return f
+
+async def main(): #das macht die Resultaten
+    results = await asyncio.gather(num_calc('A', 2), num_calc('B', 3), num_calc('C', 4))
+    print(results)
+
+asyncio.run(main())
+
+
+###############################
+import random
+
+def magic_pot(start=1, end=1000):
+    while True:
+        stop = (yield random.randint(start, end))
+        print(f'stop {stop}')
+        if stop is True:
+            yield 'magic pot stopped'
+            break
+
+gen = magic_pot()
+print(gen)
+print(gen.send(None))
+print('second')
+print(next(gen))
+print(gen.send(True))
+
+try:
+    print(next(gen))
+except StopIteration:
+    print('iteration stopped')
