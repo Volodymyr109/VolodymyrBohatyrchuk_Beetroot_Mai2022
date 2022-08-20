@@ -1,0 +1,53 @@
+#TASK + REPORT
+
+import multiprocessing
+import time
+from random import random
+
+
+def report(lock_, identifier):
+    with lock_:
+        print(f'Process {identifier} done')
+
+def task_(lock_, identiftier, value):
+    with lock_:
+        print(f'Process {identiftier} got the lock, sleeping {value} secs')
+        time.sleep(value)
+        report(lock_, identiftier)
+
+if __name__ == '__main__':
+    lock = multiprocessing.RLock()
+    processes = [multiprocessing.Process(target=task_, args=(lock, i, random())) for i in range(10)]
+    for processes in processes:
+        processes.start()
+
+    for processes in processes:
+        processes.join()
+
+
+
+#CLASS CustomProcess
+
+import multiprocessing
+import time
+
+
+class CustomProcess(multiprocessing.Process):
+
+    def __init__(self):
+        super().__init__()
+
+        self.data = multiprocessing.Value('i', 0)
+
+    def run(self):
+        time.sleep(1)
+        self.data.value = 50
+        print('child value stored %s' % self.data.value)
+
+
+if __name__ == '__main__':
+    pr = CustomProcess()
+    pr.start()
+    print('Waiting...')
+    pr.join()
+    print(pr.data.value)
