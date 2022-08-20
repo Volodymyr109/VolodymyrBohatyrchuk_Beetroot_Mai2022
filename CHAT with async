@@ -1,0 +1,102 @@
+import datetime
+import random
+import socket
+import threading
+from colorama import Fore, init, Back
+init()
+
+colors = [Fore.BLUE, Fore.CYAN, Fore.GREEN, Fore.LIGHTBLACK_EX,
+    Fore.LIGHTBLUE_EX, Fore.LIGHTCYAN_EX, Fore.LIGHTGREEN_EX,
+    Fore.LIGHTMAGENTA_EX, Fore.LIGHTRED_EX, Fore.LIGHTWHITE_EX,
+    Fore.LIGHTYELLOW_EX, Fore.MAGENTA, Fore.RED, Fore.WHITE, Fore.YELLOW
+]
+
+client_color = random.choice(colors)
+
+SERVER_HOST = '6.tcp.eu.ngrok.io'
+SERVER_PORT = 13392
+sep = '<SEP>'
+s = socket.socket()
+print(f'>>> Connecting to {SERVER_HOST}:{SERVER_PORT}')
+
+s.connect((SERVER_HOST, SERVER_PORT))
+print('>>> Connected!')
+
+username = input('Enter your username: ')
+
+
+def listen_message():
+    while True:
+        msg = s.recv(1024).decode()
+        print('\n' + f'{msg}')
+
+
+if __name__ == '__main__':
+    thr = threading.Thread(target=listen_message)
+    thr.daemon = True
+    thr.start()
+
+    while True:
+        to_send = input()
+        if to_send in ['q', 'exit']:
+            break
+        date_now = datetime.datetime.now()
+        to_send = f'{client_color}[{date_now}]{username}{sep}{to_send}{Fore.RESET}'
+        s.send(to_send.encode())
+    s.close()
+
+
+
+"""
+A basic client to server chat in the console. We will need to create two files, one server, and one client.
+The clients will send messages to the server and the server will then broadcast them to all the connected clients.
+Users (clients) will be able to rename themselves in the server,
+so that other clients don't see client1, client2 etc, but the user's name instead.
+"""
+
+import socket
+from threading import Thread
+
+HOST = '127.0.0.1'
+PORT = 5002
+sep = '<SEP>'
+
+client_sockets = set()
+s = socket.socket()
+s.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+s.bind((HOST, PORT))
+s.listen(15)
+print(f'>>> Listen {HOST}:{PORT}')
+
+
+def listen_client(cs):
+    while True:
+        try:
+            msg = cs.recv(1024).decode()
+        except Exception as e:
+            print(f'>>> !!! Error: {e}')
+            client_sockets.remove(cs)
+        else:
+            msg = msg.replace(sep, ': ')  # "nickname: message"
+            broadcast_msg(msg)
+
+
+def broadcast_msg(message):
+    for cl in client_sockets:
+        try:
+            cl.send(message.encode())
+        except:
+            continue
+
+# if __name__ == '__main__':
+while True:
+    cl_socket, cl_addr = s.accept()
+    print(f'>>> {cl_addr} connected to chat')
+    client_sockets.add(cl_socket)
+    thr = Thread(target=listen_client, args=(cl_socket,))
+    thr.daemon = True
+    thr.start()
+
+for client in client_sockets:
+    client.close()
+s.close()
