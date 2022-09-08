@@ -1,0 +1,31 @@
+from django.contrib import admin
+from django.urls import path
+
+from . import views
+
+urlpatterns = [
+    path('sync/', views.sync_view, name='sync'),
+    path('async/', views.async_view, name='async'),
+
+]
+
+
+
+##############################################
+async def http_async():
+    await asyncio.sleep(5)
+    async with httpx.AsyncClient() as client:
+        response = await client.get('https://httpbin.org/')
+        print(response)
+
+
+async def async_view(request):
+    loop = asyncio.get_event_loop()
+    loop.create_task(http_async())
+    return JsonResponse({'words': 'Hello async world!'})
+    
+    
+    ######################################
+    
+    
+    
