@@ -70,3 +70,6 @@ try:
     print(next(gen))
 except StopIteration:
     print('iteration stopped')
+
+bohatyrchuk_p18@nuwm.edu.ua
+артемдзідзоєвкрасавчик
